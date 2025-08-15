@@ -15,7 +15,8 @@ class Conversion:
             celsius_a_fahrenheit(0) -> 32.0
             celsius_a_fahrenheit(100) -> 212.0
         """
-        pass
+        return(celsius * 9/5) + 32
+
     
     def fahrenheit_a_celsius(self, fahrenheit):
         """
@@ -33,7 +34,8 @@ class Conversion:
             fahrenheit_a_celsius(32) -> 0.0
             fahrenheit_a_celsius(212) -> 100.0
         """
-        pass
+        return(fahrenheit - 32) * 5/9
+    
     
     def metros_a_pies(self, metros):
         """
@@ -50,7 +52,9 @@ class Conversion:
         Ejemplo:
             metros_a_pies(1) -> 3.28084
         """
-        pass
+        metros = 3.28084
+        return(metros * Distancia)
+    
     
     def pies_a_metros(self, pies):
         """
@@ -67,7 +71,9 @@ class Conversion:
         Ejemplo:
             pies_a_metros(3.28084) -> 1.0
         """
-        pass
+        pies = 0.3048
+        return (pies * Distancia)
+    
     
     def decimal_a_binario(self, decimal):
         """
@@ -83,7 +89,8 @@ class Conversion:
             decimal_a_binario(10) -> "1010"
             decimal_a_binario(255) -> "11111111"
         """
-        pass
+        return(decimal)
+    
     
     def binario_a_decimal(self, binario):
         """
@@ -99,7 +106,8 @@ class Conversion:
             binario_a_decimal("1010") -> 10
             binario_a_decimal("11111111") -> 255
         """
-        pass
+        return int(binario, 2)
+    
     
     def decimal_a_romano(self, numero):
         """
@@ -115,7 +123,17 @@ class Conversion:
             decimal_a_romano(9) -> "IX"
             decimal_a_romano(1994) -> "MCMXCIV"
         """
-        pass
+        miles = ["", "M", "MM", "MMM"]
+        centenas = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
+        decenas = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
+        unidades = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+        return (
+            miles[numero // 1000]+
+            centenas[(numero % 1000)//100]+
+            decenas[(numero % 100)//10]+
+            unidades[numero % 10]
+        )
+    
     
     def romano_a_decimal(self, romano):
         """
@@ -131,7 +149,46 @@ class Conversion:
             romano_a_decimal("IX") -> 9
             romano_a_decimal("MCMXCIV") -> 1994
         """
-        pass
+
+#Conversion para todas la Funciones
+conv = Conversion()
+
+#Celsius a Fahrenheit
+Temperatura = float(input('Ingrese la Temperatura en Celsius: '))
+Resultado = conv.celsius_a_fahrenheit(Temperatura)
+print("La Temperatura en Fahrenheit es: ",Resultado)
+
+#Celsius a Fahrenheit        
+Temperatura = float(input('Ingrese la Temperatura en Fahrenheit: '))
+Resultado = conv.fahrenheit_a_celsius(Temperatura)
+print("La Temperatura en Celsius es: ",Resultado)
+
+#Metros a Pies
+Distancia = float(input('Ingrese la Distancia en Metros: '))
+Resultado = conv.metros_a_pies(Distancia)
+print("La Distancia en Pies es: ",Resultado)
+
+#Pies a Metros
+Distancia = float(input('Ingrese la Distancia en Pies: '))
+Resultado = conv.pies_a_metros(Distancia)
+print("La Distancia en Metros es: ",Resultado)
+
+#Decimal a Binario
+Cambio = int(input('Ingrese el numero Decimal: '))
+Resultado = conv.decimal_a_binario(Cambio)
+Binario = bin(Resultado)[2:]
+print('El numero en Binario es: ',Binario)
+
+#Binario a Decimal
+Cambio = input('Ingrese el numero Binario: ')
+Resultado = conv.binario_a_decimal(Cambio)
+print('El numero en Decimal es: ',Resultado)
+
+#Decimal a Romano
+Numeros = int(input('Ingrese el numero Decimal: '))
+print("El numero Romano es: ",conv.decimal_a_romano(Numeros))
+
+#Romano a Decimal
     
     def texto_a_morse(self, texto):
         """
