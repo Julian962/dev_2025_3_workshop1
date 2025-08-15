@@ -149,6 +149,20 @@ class Conversion:
             romano_a_decimal("IX") -> 9
             romano_a_decimal("MCMXCIV") -> 1994
         """
+        valores = {
+            "I": 1, "V": 5, "X": 10, "L": 50,
+            "C": 100, "D": 500, "M": 1000
+        }
+        total = 0
+        prev = 0
+        for letra in romano.upper()[::-1]:  
+            valor = valores[letra]
+            if valor < prev:
+                total -= valor
+            else:
+                total += valor
+            prev = valor
+        return total
 
 #Conversion para todas la Funciones
 conv = Conversion()
@@ -174,21 +188,23 @@ Resultado = conv.pies_a_metros(Distancia)
 print("La Distancia en Metros es: ",Resultado)
 
 #Decimal a Binario
-Cambio = int(input('Ingrese el numero Decimal: '))
+Cambio = int(input('Ingrese el número Decimal: '))
 Resultado = conv.decimal_a_binario(Cambio)
 Binario = bin(Resultado)[2:]
-print('El numero en Binario es: ',Binario)
+print('El número en Binario es: ',Binario)
 
 #Binario a Decimal
-Cambio = input('Ingrese el numero Binario: ')
+Cambio = input('Ingrese el número Binario: ')
 Resultado = conv.binario_a_decimal(Cambio)
-print('El numero en Decimal es: ',Resultado)
+print('El número en Decimal es: ',Resultado)
 
 #Decimal a Romano
-Numeros = int(input('Ingrese el numero Decimal: '))
-print("El numero Romano es: ",conv.decimal_a_romano(Numeros))
+Numeros = int(input('Ingrese el número Decimal: '))
+print("El número Romano es: ",conv.decimal_a_romano(Numeros))
 
 #Romano a Decimal
+Romano = input("Ingrese un número romano: ")
+print("Número decimal:", conv.romano_a_decimal(Romano))
     
     def texto_a_morse(self, texto):
         """
