@@ -12,7 +12,20 @@ class Stats:
         Ejemplo:
             promedio([1, 2, 3, 4, 5]) -> 3.0
         """
-        pass
+        n = int(input("Ingrese la cantidad de números: "))
+        numeros = []
+
+        for i in range(n):
+            valor = float(input(f"Ingrese el número {i+1}: "))
+            numeros.append(valor)
+
+        if n == 0:
+            print("No se puede calcular el promedio de una lista vacía.")
+            return None
+
+        media = sum(numeros) / n
+        print(f"La media aritmética es: {media}")
+        return media
     
     def mediana(self, numeros):
         """
@@ -29,7 +42,27 @@ class Stats:
             mediana([1, 2, 3, 4, 5]) -> 3.0
             mediana([1, 2, 3, 4]) -> 2.5
         """
-        pass
+        n = int(input("Ingrese la cantidad de números: "))
+        numeros = []
+
+        for i in range(n):
+            valor = float(input(f"Ingrese el número {i+1}: "))
+            numeros.append(valor)
+
+        if n == 0:
+            print("No se puede calcular la mediana de una lista vacía.")
+            return None
+
+        numeros.sort()
+        mitad = n // 2
+
+        if n % 2 == 0:
+            mediana = (numeros[mitad - 1] + numeros[mitad]) / 2
+        else:
+            mediana = numeros[mitad]
+
+        print(f"La mediana es: {mediana}")
+        return mediana
     
     def moda(self, numeros):
         """
@@ -45,7 +78,25 @@ class Stats:
         Ejemplo:
             moda([1, 2, 2, 3, 3, 3]) -> 3
         """
-        pass
+        n = int(input("Ingrese la cantidad de números: "))
+        numeros = []
+
+        for i in range(n):
+            valor = float(input(f"Ingrese el número {i+1}: "))
+            numeros.append(valor)
+
+        if n == 0:
+            print("No se puede calcular la moda de una lista vacía.")
+            return None
+
+        frecuencia = {}
+        for num in numeros:
+            frecuencia[num] = frecuencia.get(num, 0) + 1
+
+        moda = max(frecuencia, key=frecuencia.get)
+        print(f"La moda es: {moda}")
+        return moda
+
     
     def desviacion_estandar(self, numeros):
         """
@@ -61,7 +112,23 @@ class Stats:
         Ejemplo:
             desviacion_estandar([1, 2, 3, 4, 5]) -> 1.41...
         """
-        pass
+        n = int(input("Ingrese la cantidad de números: "))
+        numeros = []
+
+        for i in range(n):
+            valor = float(input(f"Ingrese el número {i+1}: "))
+            numeros.append(valor)
+
+        if n == 0:
+            print("No se puede calcular la desviación estándar de una lista vacía.")
+            return None
+
+        media = sum(numeros) / n
+        varianza = sum((x - media) ** 2 for x in numeros) / n
+        desviacion = varianza ** 0.5
+
+        print(f"La desviación estándar es: {desviacion}")
+        return desviacion
     
     def varianza(self, numeros):
         """
@@ -77,7 +144,22 @@ class Stats:
         Ejemplo:
             varianza([1, 2, 3, 4, 5]) -> 2.0
         """
-        pass
+        n = int(input("Ingrese la cantidad de números: "))
+        numeros = []
+
+        for i in range(n):
+            valor = float(input(f"Ingrese el número {i+1}: "))
+            numeros.append(valor)
+
+        if n == 0:
+            print("No se puede calcular la varianza de una lista vacía.")
+            return None
+
+        media = sum(numeros) / n
+        varianza = sum((x - media) ** 2 for x in numeros) / n
+
+        print(f"La varianza es: {varianza}")
+        return varianza
     
     def rango(self, numeros):
         """
@@ -92,4 +174,37 @@ class Stats:
         Ejemplo:
             rango([1, 5, 3, 9, 2]) -> 8
         """
-        pass
+        n = int(input("Ingrese la cantidad de números: "))
+        numeros = []
+
+        for i in range(n):
+            valor = float(input(f"Ingrese el número {i+1}: "))
+            numeros.append(valor)
+
+        if n == 0:
+            print("No se puede calcular el rango de una lista vacía.")
+            return None
+
+        rango_valor = max(numeros) - min(numeros)
+        print(f"El rango es: {rango_valor}")
+        return rango_valor
+
+stats = Stats()
+
+#Promedio
+stats.promedio()
+
+#Mediana
+stats.mediana()
+
+#Moda
+stats.moda()
+
+#Desviacion Estandar
+stats.desviacion_estandar()
+
+#Varianza
+stats.varianza()
+
+#Rango
+stats.rango()

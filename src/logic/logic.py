@@ -1,8 +1,5 @@
 class Logica:
-    """
-    Clase con métodos para realizar operaciones de lógica booleana y algoritmos.
-    """
-    
+
     def AND(self, a, b):
         """
         Implementa la operación lógica AND.
@@ -14,7 +11,13 @@ class Logica:
         Returns:
             bool: Resultado de a AND b
         """
-        pass
+        a = input("Ingrese el primer valor (True/False): ")
+        b = input("Ingrese el segundo valor (True/False): ")
+
+        a = a.strip().lower() == "true"
+        b = b.strip().lower() == "true"
+
+        return a and b
     
     def OR(self, a, b):
         """
@@ -27,7 +30,15 @@ class Logica:
         Returns:
             bool: Resultado de a OR b
         """
-        pass
+        a = input("Ingrese el primer valor (True/False): ")
+        b = input("Ingrese el segundo valor (True/False): ")
+
+        a = a.strip().lower() == "true"
+        b = b.strip().lower() == "true"
+
+        resultado = a or b
+        print(f"Resultado de {a} OR {b} es: {resultado}")
+        return resultado
     
     def NOT(self, a):
         """
@@ -39,7 +50,13 @@ class Logica:
         Returns:
             bool: Resultado de NOT a
         """
-        pass
+        a = input("Ingrese un valor (True/False): ")
+        
+        a = a.strip().lower() == "true"
+        
+        resultado = not a
+        print(f"Resultado de NOT {a} es: {resultado}")
+        return resultado
     
     def XOR(self, a, b):
         """
@@ -52,7 +69,15 @@ class Logica:
         Returns:
             bool: Resultado de a XOR b
         """
-        pass
+        a = input("Ingrese el primer valor (True/False): ")
+        b = input("Ingrese el segundo valor (True/False): ")
+
+        a = a.strip().lower() == "true"
+        b = b.strip().lower() == "true"
+
+        resultado = (a and not b) or (not a and b)
+        print(f"Resultado de {a} XOR {b} es: {resultado}")
+        return resultado
     
     def NAND(self, a, b):
         """
@@ -65,7 +90,15 @@ class Logica:
         Returns:
             bool: Resultado de a NAND b
         """
-        pass
+        a = input("Ingrese el primer valor (True/False): ")
+        b = input("Ingrese el segundo valor (True/False): ")
+
+        a = a.strip().lower() == "true"
+        b = b.strip().lower() == "true"
+
+        resultado = not (a and b)
+        print(f"Resultado de {a} NAND {b} es: {resultado}")
+        return resultado
     
     def NOR(self, a, b):
         """
@@ -78,7 +111,15 @@ class Logica:
         Returns:
             bool: Resultado de a NOR b
         """
-        pass
+        a = input("Ingrese el primer valor (True/False): ")
+        b = input("Ingrese el segundo valor (True/False): ")
+
+        a = a.strip().lower() == "true"
+        b = b.strip().lower() == "true"
+
+        resultado = not (a or b)
+        print(f"Resultado de {a} NOR {b} es: {resultado}")
+        return resultado
     
     def XNOR(self, a, b):
         """
@@ -91,7 +132,15 @@ class Logica:
         Returns:
             bool: Resultado de a XNOR b
         """
-        pass
+        a = input("Ingrese el primer valor (True/False): ")
+        b = input("Ingrese el segundo valor (True/False): ")
+
+        a = a.strip().lower() == "true"
+        b = b.strip().lower() == "true"
+
+        resultado = (a and b) or (not a and not b)
+        print(f"Resultado de {a} XNOR {b} es: {resultado}")
+        return resultado
     
     def implicacion(self, a, b):
         """
@@ -104,7 +153,15 @@ class Logica:
         Returns:
             bool: Resultado de la implicación
         """
-        pass
+        a = input("Ingrese el antecedente (a) (True/False): ")
+        b = input("Ingrese el consecuente (b) (True/False): ")
+
+        a = a.strip().lower() == "true"
+        b = b.strip().lower() == "true"
+
+        resultado = (not a) or b
+        print(f"Resultado de {a} -> {b} es: {resultado}")
+        return resultado
     
     def bi_implicacion(self, a, b):
         """
@@ -117,6 +174,42 @@ class Logica:
         Returns:
             bool: Resultado de la bi-implicación
         """
-        pass
-    
-    
+        a = input("Ingrese el primer valor (a) (True/False): ")
+        b = input("Ingrese el segundo valor (b) (True/False): ")
+
+        a = a.strip().lower() == "true"
+        b = b.strip().lower() == "true"
+
+        resultado = (a and b) or (not a and not b)
+        print(f"Resultado de {a} <-> {b} es: {resultado}")
+        return resultado
+
+log = Logica()
+
+#AND
+resultado = log.AND()
+print("Resultado:", resultado)
+
+#OR
+log.OR()
+
+#NOT
+log.NOT()
+
+#XOR
+log.XOR()
+
+#NAND
+log.NAND()
+
+#NOR
+log.NOR()
+
+#XNOR
+log.XNOR()
+
+#Implicacion
+log.implicacion()
+
+#Bi-Implicacion
+log.bi_implicacion()
