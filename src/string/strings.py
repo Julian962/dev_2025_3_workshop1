@@ -10,16 +10,8 @@ class Strings:
         Returns:
             bool: True si es palíndromo, False en caso contrario
         """
-        texto = input("Ingrese un texto: ")
         texto_limpio = ''.join(texto.lower().split())
-        es_palindromo = texto_limpio == texto_limpio[::-1]
-
-        if es_palindromo:
-            print("Es un palíndromo.")
-        else:
-            print("No es un palíndromo.")
-
-        return es_palindromo
+        return texto_limpio == texto_limpio[::-1]
     
     def invertir_cadena(self, texto):
         """
@@ -31,11 +23,9 @@ class Strings:
         Returns:
             str: Cadena invertida
         """
-        texto = input("Ingrese un texto: ")
         invertida = ""
-        for caracter in texto:
-            invertida = caracter + invertida  
-        print(f"Cadena invertida: {invertida}")
+        for c in texto:
+            invertida = c + invertida
         return invertida
     
     def contar_vocales(self, texto):
@@ -48,15 +38,8 @@ class Strings:
         Returns:
             int: Número de vocales en la cadena
         """
-        texto = input("Ingrese un texto: ")
-        vocales = "aeiouAEIOU"
-        contador = 0
-        for caracter in texto:
-            if caracter in vocales:
-                contador += 1
-
-        print(f"Número de vocales: {contador}")
-        return contador
+        vocales = set("aeiouAEIOU")
+        return sum(1 for c in texto if c in vocales)
     
     def contar_consonantes(self, texto):
         """
@@ -68,15 +51,18 @@ class Strings:
         Returns:
             int: Número de consonantes en la cadena
         """
-        texto = input("Ingrese un texto: ")
-        vocales = "aeiouAEIOU"
-        contador = 0
-        for caracter in texto:
-            if caracter.isalpha() and caracter not in vocales:
-                contador += 1
+        vocales = set("aeiouAEIOU")
+        return sum(1 for c in texto if c.isalpha() and c not in vocales)
 
-        print(f"Número de consonantes: {contador}")
-        return contador
+    def es_anagrama(self, texto1, texto2):
+        t1 = texto1.replace(" ", "").lower()
+        t2 = texto2.replace(" ", "").lower()
+        def contar_caracteres(t):
+            d = {}
+            for ch in t:
+                d[ch] = d.get(ch, 0) + 1
+            return d
+        return contar_caracteres(t1) == contar_caracteres(t2)
     
     def es_anagrama(self, texto1, texto2):
         """
@@ -89,26 +75,14 @@ class Strings:
         Returns:
             bool: True si son anagramas, False en caso contrario
         """
-        texto1 = input("Ingrese la primera cadena: ").replace(" ", "").lower()
-        texto2 = input("Ingrese la segunda cadena: ").replace(" ", "").lower()
-
-        def contar_caracteres(texto):
-            conteo = {}
-            for c in texto:
-                if c in conteo:
-                    conteo[c] += 1
-                else:
-                    conteo[c] = 1
-            return conteo
-
-        es_anagrama = contar_caracteres(texto1) == contar_caracteres(texto2)
-
-        if es_anagrama:
-            print("Son anagramas.")
-        else:
-            print("No son anagramas.")
-
-        return es_anagrama
+        t1 = texto1.replace(" ", "").lower()
+        t2 = texto2.replace(" ", "").lower()
+        def contar_caracteres(t):
+            d = {}
+            for ch in t:
+                d[ch] = d.get(ch, 0) + 1
+            return d
+        return contar_caracteres(t1) == contar_caracteres(t2)
 
     
     def contar_palabras(self, texto):
@@ -121,11 +95,7 @@ class Strings:
         Returns:
             int: Número de palabras en la cadena
         """
-        texto = input("Ingrese un texto: ")
-        palabras = [palabra for palabra in texto.split(" ") if palabra != ""]
-        cantidad = len(palabras)
-        print(f"Número de palabras: {cantidad}")
-        return cantidad
+        return len([p for p in texto.split(" ") if p != ""])
     
     def palabras_mayus(self, texto):
         """
@@ -137,15 +107,19 @@ class Strings:
         Returns:
             str: Cadena con la primera letra de cada palabra en mayúscula
         """
-        texto = input("Ingrese un texto: ")
-        palabras = texto.split()
-        resultado = ""
-        for palabra in palabras:
-            if palabra:
-                resultado += palabra[0].upper() + palabra[1:] + " "
-        resultado = resultado.strip()
-        print(f"Texto formateado: {resultado}")
-        return resultado
+        res = []
+        nueva_palabra = True
+        for ch in texto:
+            if nueva_palabra and ch.isalpha():
+                res.append(ch.upper())
+                nueva_palabra = False
+            else:
+                res.append(ch)
+                if ch.isalpha():
+                    nueva_palabra = False
+            if ch == ' ':
+                nueva_palabra = True
+        return ''.join(res)
     
     def eliminar_espacios_duplicados(self, texto):
         """
@@ -157,11 +131,18 @@ class Strings:
         Returns:
             str: Cadena sin espacios duplicados
         """
-        texto = input("Ingrese un texto: ")
-        palabras = texto.split()  
-        resultado = " ".join(palabras)
-        print(f"Texto sin espacios duplicados: {resultado}")
-        return resultado
+        if texto == "":
+            return ""
+        had_leading = texto[0] == ' '
+        had_trailing = texto[-1] == ' '
+        collapsed = ' '.join(texto.split())
+        if collapsed == "" and texto.strip() == "":
+            return "" 
+        if had_leading:
+            collapsed = ' ' + collapsed
+        if had_trailing:
+            collapsed = collapsed + ' '
+        return collapsed
     
     def es_numero_entero(self, texto):
         """
@@ -173,20 +154,12 @@ class Strings:
         Returns:
             bool: True si la cadena representa un número entero, False en caso contrario
         """
-        texto = input("Ingrese un número entero: ").strip()
-        if texto == "":
-            print("No es un número entero.")
+        s = texto.strip()
+        if s == "":
             return False
-
-        if texto[0] in ("+", "-"):
-            texto = texto[1:]
-
-        es_entero = all(c in "0123456789" for c in texto) and texto != ""
-        if es_entero:
-            print("Es un número entero.")
-        else:
-            print("No es un número entero.")
-        return es_entero
+        if s[0] in ("+", "-"):
+            s = s[1:]
+        return s != "" and all(ch in "0123456789" for ch in s)
     
     def cifrar_cesar(self, texto, desplazamiento):
         """
@@ -199,25 +172,19 @@ class Strings:
         Returns:
             str: Cadena cifrada
         """
-        texto = input("Ingrese el texto a cifrar: ")
-        desplazamiento_str = input("Ingrese el desplazamiento (entero): ")
-
         try:
-            desplazamiento = int(desplazamiento_str)
-        except ValueError:
-            print("Desplazamiento no válido, se usará 0")
-            desplazamiento = 0
-
-        resultado = ""
-        for char in texto:
-            if 'a' <= char <= 'z':
-                resultado += chr((ord(char) - ord('a') + desplazamiento) % 26 + ord('a'))
-            elif 'A' <= char <= 'Z':
-                resultado += chr((ord(char) - ord('A') + desplazamiento) % 26 + ord('A'))
+            k = int(desplazamiento)
+        except (ValueError, TypeError):
+            k = 0
+        res = ""
+        for ch in texto:
+            if 'a' <= ch <= 'z':
+                res += chr((ord(ch) - ord('a') + k) % 26 + ord('a'))
+            elif 'A' <= ch <= 'Z':
+                res += chr((ord(ch) - ord('A') + k) % 26 + ord('A'))
             else:
-                resultado += char  
-        print(f"Texto cifrado: {resultado}")
-        return resultado
+                res += ch
+        return res
     
     def descifrar_cesar(self, texto, desplazamiento):
         """
@@ -230,26 +197,11 @@ class Strings:
         Returns:
             str: Cadena descifrada
         """
-        texto = input("Ingrese el texto a descifrar: ")
-        desplazamiento_str = input("Ingrese el desplazamiento (entero): ")
-
         try:
-            desplazamiento = int(desplazamiento_str)
-        except ValueError:
-            print("Desplazamiento no válido, se usará 0")
-            desplazamiento = 0
-
-        resultado = ""
-        for char in texto:
-            if 'a' <= char <= 'z':
-                resultado += chr((ord(char) - ord('a') - desplazamiento) % 26 + ord('a'))
-            elif 'A' <= char <= 'Z':
-                resultado += chr((ord(char) - ord('A') - desplazamiento) % 26 + ord('A'))
-            else:
-                resultado += char  
-
-        print(f"Texto descifrado: {resultado}")
-        return resultado
+            k = int(desplazamiento)
+        except (ValueError, TypeError):
+            k = 0
+        return self.cifrar_cesar(texto, -k)
 
     
     def encontrar_subcadena(self, texto, subcadena):
@@ -263,54 +215,11 @@ class Strings:
         Returns:
             list: Lista con las posiciones iniciales de cada ocurrencia
         """
-        texto = input("Ingrese el texto principal: ")
-        subcadena = input("Ingrese la subcadena a buscar: ")
-
         posiciones = []
-        len_sub = len(subcadena)
-        len_texto = len(texto)
-
-        for i in range(len_texto - len_sub + 1):
-            if texto[i:i+len_sub] == subcadena:
+        n, m = len(texto), len(subcadena)
+        if m == 0:
+            return [] 
+        for i in range(n - m + 1):
+            if texto[i:i + m] == subcadena:
                 posiciones.append(i)
-
-        print(f"Posiciones encontradas: {posiciones}")
         return posiciones
-
-strings = Strings()
-
-#Es Palindromo
-strings.es_palindromo()
-
-#Invertir Cadena
-strings.invertir_cadena()
-
-#Contar Vocales
-strings.contar_vocales()
-
-#Contar Consonantes
-strings.contar_consonantes()
-
-#Es Anagrama
-strings.es_anagrama()
-
-#Contar Palabras
-strings.contar_palabras()
-
-#Palabras Mayus
-strings.palabras_mayus()
-
-#Eliminar Espacios Duplicados
-strings.eliminar_espacios_duplicados()
-
-#Es Numero Entero
-strings.es_numero_entero()
-
-#Cifrar Cesar
-strings.cifrar_cesar()
-
-#Descifrar Cesar
-strings.descifrar_cesar()
-
-#Encontrar Subcadena
-strings.encontrar_subcadena()
