@@ -162,7 +162,7 @@ class TestGeometria:
         # Test con valores enteros positivos
         assert self.geometria.distancia_entre_puntos(0, 0, 3, 4) == 5
         # Test con valores negativos
-        assert round(self.geometria.distancia_entre_puntos(-1, -2, 2, 3), 2) == 5.83
+        assert self.geometria.distancia_entre_puntos(-1, -2, 2, 3) == 5.83
         # Test con puntos idénticos (distancia cero)
         assert self.geometria.distancia_entre_puntos(5, 5, 5, 5) == 0
     

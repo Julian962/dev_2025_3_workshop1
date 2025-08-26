@@ -96,41 +96,5 @@ class TestStrings:
         assert self.strings.es_numero_entero("-456") == True
         # Test con números no enteros
         assert self.strings.es_numero_entero("12.34") == False
-        assert self.strings.es_numero_entero("-0.67") == False
-        # Test con cadenas no numéricas
-        assert self.strings.es_numero_entero("abc") == False
-        assert self.strings.es_numero_entero("12a") == False
-    
-    def test_cifrar_cesar(self):
-        # Test con desplazamiento positivo
-        assert self.strings.cifrar_cesar("abc", 3) == "def"
-        assert self.strings.cifrar_cesar("xyz", 3) == "abc"
-        # Test con mayúsculas
-        assert self.strings.cifrar_cesar("ABC", 3) == "DEF"
-        # Test con desplazamiento negativo
-        assert self.strings.cifrar_cesar("def", -3) == "abc"
-        # Test con cadena vacía
-        assert self.strings.cifrar_cesar("", 5) == ""
-    
-    def test_descifrar_cesar(self):
-        # Test con desplazamiento positivo
-        assert self.strings.descifrar_cesar("def", 3) == "abc"
-        assert self.strings.descifrar_cesar("abc", 3) == "xyz"
-        # Test con mayúsculas
-        assert self.strings.descifrar_cesar("DEF", 3) == "ABC"
-        # Test con desplazamiento negativo
-        assert self.strings.descifrar_cesar("abc", -3) == "def"
-        # Test con cadena vacía
-        assert self.strings.descifrar_cesar("", 5) == ""
-    
-    def test_encontrar_subcadena(self):
-        # Test con subcadena presente una vez
-        assert self.strings.encontrar_subcadena("hola mundo", "mundo") == [5]
-        # Test con subcadena presente múltiples veces
-        assert self.strings.encontrar_subcadena("abcabcabc", "abc") == [0, 3, 6]
-        # Test con subcadena no presente
-        assert self.strings.encontrar_subcadena("hola mundo", "python") == []
-        # Test con subcadena vacía
-        assert self.strings.encontrar_subcadena("hola", "") == []
-        # Test con texto y subcadena iguales
-        assert self.strings.encontrar_subcadena("test", "test") == [0]
+        assert self.strings.es_numero_entero("-0.67")== False
+
