@@ -13,11 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install dependencies
+    - name: Set up Python venv and install deps
       run: |
-        python3 -m pip install --upgrade pip
+        python3 -m venv .venv
+        echo ".venv/bin" >> $GITHUB_PATH
+        python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        python3 -m pip install pytest pytest-cov
+        pip install pytest pytest-cov
 
     - name: Run tests with coverage
       run: |
