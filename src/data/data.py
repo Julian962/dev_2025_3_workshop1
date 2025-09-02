@@ -1,5 +1,4 @@
 class Data:
-
     def invertir_lista(self, lista):
 
         invertida = []
