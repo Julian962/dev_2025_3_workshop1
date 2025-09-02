@@ -1,4 +1,5 @@
 class Stats:
+    
     def promedio(self, numeros):
         if not numeros:
             return 0
