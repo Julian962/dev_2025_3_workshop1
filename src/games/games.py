@@ -42,7 +42,8 @@ class Games:
             if " " in fila:
                 return "continua"
         return "empate"
-    
+
+        
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
 
         return [random.choice(colores_disponibles) for _ in range(longitud)]
